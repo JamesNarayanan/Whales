@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+	<title>The other page</title>
+	<script>
+		var family = "Raleway";
+
+		//Non-repeating noises uses these:
+		//var snd = new Audio("beauty.mp3");
+		//var src = snd.src;
+
+		//Repeating noises uses this
+		var sounds = [];
+
+		function toggleBaby() {
+			var whalePic = document.getElementById("baby");
+			var whaleNoises = document.getElementById("noises");
+			if(whalePic.style.visibility == "hidden") {
+				whalePic.style.visibility = "visible";
+				fadeIn(whalePic, "inline");
+			}
+			else {
+				whalePic.style.visibility = "hidden";
+				sounds.forEach(function(sound) {
+					sound.src = "";
+				});
+				sounds = [];
+
+				//For Non-repeating noises:
+				//snd.src = "";
+			}
+			whaleNoises.style.visibility = whalePic.style.visibility;
+			document.getElementById("noises").innerHTML = '';
+		}
+		function fadeIn(el, display){ //http://www.chrisbuttery.com/articles/fade-in-fade-out-with-javascript/
+			el.style.opacity = 0;
+			el.style.display = display || "block";
+			
+			(function fade() {
+				var val = parseFloat(el.style.opacity);
+				if ((val += 1/25) <= 1) {
+					el.style.opacity = val;
+					requestAnimationFrame(fade);
+				}
+			})();
+		}
+		function makeNoise() {
+			document.getElementById("noises").innerHTML += 'ooooo ';
+			//Repeat:
+			sounds.push(new Audio("beauty.mp3"));
+			sounds[sounds.length-1].play();
+
+			//Non-repeat:
+			//snd.src = src;
+			//snd.play();
+		}
+		function formatGButton() {
+			var canvas = document.getElementById("graphicsButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#00FFFF";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.fillStyle="#000000";
+			ctx.font="18px " + family;
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Graphics Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function formatHButton() {
+			var canvas = document.getElementById("homeButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#00FFFF";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.fillStyle="#000000";
+			ctx.font="18px " + family;
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Home Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function formatAButton() {
+			var canvas = document.getElementById("statsButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#00FFFF";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.fillStyle="#000000";
+			ctx.font="18px " + family;
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Articles Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function goToGraphics() {
+			window.location = "graphics.html";
+		}
+		function goHome() {
+			window.location = "index.html";
+		}
+		function goToArticles() {
+			window.location = "articles.html";
+		}
+	</script>
+	<style>
+		body {
+			background-image: url(" otherWhale.jpg");
+			background-repeat:no-repeat;
+			background-attachment:fixed;
+			background-position:top center;
+	   		/*background-size:cover;*/
+			color:#00FFFF;
+			font-family: 'Raleway', sans-serif;
+			font-size:200%;
+		}
+		img {
+			border:5px solid white;
+			box-shadow:5px 5px 5px #999;
+		}
+		canvas {
+			cursor:pointer;
+		}
+		.center {
+			text-align:center;
+		}
+		.border {
+			border:2px solid white;
+		}
+		.noselect {
+			user-select: none;
+		}
+		.noises {
+			font-size:125%;
+			text-shadow:5px 5px 5px #aaa;
+			font-color:#00FFFF;
+		}
+	</style>
+</head>
+<body onload="formatGButton(); formatHButton(); formatAButton();">
+	<!--<form action="graphics.html" style="text-align:right">
+		<input type="submit" value="Click here to go to Graphics Page!" style="background-color:#00FFFF"/>
+	</form>-->
+	<div style="position: absolute; right: -2px; top:-2px;">
+	<canvas class="border" id="graphicsButton" width="325" height="30" onclick="goToGraphics()"></canvas>
+	</div>
+	<div style="position: absolute; left: -2px; top:-2px;">
+	<canvas class="border" id="homeButton" width="310" height="30" onclick="goHome()"></canvas>
+	</div>
+	<div style="position: absolute; text-align:center; top:-2px; left:50%; margin-left:-156px;">
+	<canvas class="border" id="statsButton" width="312" height="30" onclick="goToArticles()"></canvas>
+	</div>
+	<div class="center">
+		<h1>Welcome to the Other Page!</h1>
+		<div class="noselect">
+			<label onclick="toggleBaby()" style="font-size:200%;  cursor:pointer;"/>My Baby</label>
+			<br>
+			<img src = "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fpetapixel.com%2Fassets%2Fuploads%2F2015%2F07%2Forcaleaping3.jpg&f=1" id="baby" style="visibility:hidden; cursor:pointer;" onclick="makeNoise()"/>
+			<br>
+			<label id="noises" class="noises"></label>
+			<!--00ffff-->
+		</div>
+	</div>
+</body>
+</html>

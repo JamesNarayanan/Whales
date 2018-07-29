@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+	<title>Graphics</title>
+	<script>
+		var family = "Raleway";
+		var hidden = false;
+		var timestep = 100/6; // msec between movements of background
+		var wavePosition = 0; // How far to shift wave background (current position)
+		var wavePosStep = 2; // How many pixels to move background each time
+		
+		function init() {
+			var s = document.body.style;
+			s.backgroundImage = "url('https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clipartkid.com%2Fimages%2F203%2Flog-in-register-upload-clipart-zgS7Ak-clipart.png&f=1')";//1600x1200 px
+			s.backgroundRepeat = "repeat-x";
+			s.backgroundSize = 'auto ' + window.innerHeight + 'px'; //screen.heights
+			s.backgroundPosition = '0px 0px';
+			setInterval(stepWave, timestep);
+		}
+		function backgroundResize() {
+			document.body.style.backgroundSize = 'auto ' + window.innerHeight + 'px'; 
+		}
+		
+		// Moves the background one increment
+		function stepWave() {
+			var s = document.body.style;
+			wavePosition += wavePosStep; // Increment the position
+			s.backgroundPosition = '' + wavePosition + 'px 0px';
+		}
+		/*function loadHidingProps() {
+			applyHidingProperties("front");
+			applyHidingProperties("backArrow");
+		}
+		function applyHidingProperties(elementID) {
+			var el = document.getElementById(elementID);
+			el.onclick="goBack()";
+			el.onmousedown="hideFront()";
+			el.onmouseup="backMaybe()";
+			el.onmouseout="showFront()";
+			el.onmouseover="hideMaybe()";
+		}*/
+		function goBack()  {
+			window.location = document.referrer;
+		}
+		function hideFront() {
+			var front = document.getElementById("front");
+			front.style.opacity = "0";
+			hidden = true;
+		}
+		function showFront() {
+			var front = document.getElementById("front");
+			front.style.opacity = "1";
+		}
+		function hideMaybe() { //Hides the front if mouse is still pressed
+			if(hidden)
+				front.style.opacity = "0";
+		}
+		function backMaybe() {
+			if(hidden)
+				goBack();
+		}
+		function unhide() {
+			hidden = false;
+			front.style.opacity = "1";
+		}
+	</script>
+	<style>
+		body {
+			/*background-image:url("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clipartkid.com%2Fimages%2F203%2Flog-in-register-upload-clipart-zgS7Ak-clipart.png&f=1");
+			background-repeat:repeat-x;
+			background-size:20%;
+			background-attachment:fixed;*/
+		}
+		.svgText {
+			font-family:'Raleway';
+			text-align:center;
+			font-size:275%;
+			user-select:none;
+		}
+		.whale {
+			height:10vw;
+			width:20vw;
+			position:relative;
+			animation-name: whaleMove;
+			animation-duration: 12s;
+			animation-timing-function: linear;
+			animation-delay: 0s;
+			animation-iteration-count: infinite;
+			animation-direction: normal;
+		}
+		@keyframes whaleMove {
+			0% {left:-22vw; top:35vh;}
+    			/*25% {left:300px; top:100px;}
+    			50% {left:500px; top:300px;}
+    			75% {left:700px; top:100px;}
+    			100% {left:900px; top:200px;}*/
+    			25% {left:8.5vw; top:25vh;}
+    			50% {left:39vw; top:35vh;}
+    			75% {left:69.5; top:25vh;}
+    			100% {left:100vw; top:35vh;}
+		}
+	</style>
+</head>
+<body onmouseup="unhide()" onload="init();"onresize="backgroundResize()">
+	<svg width="400" height="110" style="position: absolute; left: 0px; top:0px;">
+		<rect id="back" width="49" height="39" style="fill:#999; cursor:pointer;"/>
+		<rect id="front" width="46" height="36" style="fill:#FBF57C; cursor:pointer;" onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()"/>
+		<text id="backArrow" dx="-38" dy="-4" class="svgText" style="cursor:pointer;" transform="rotate(180,0,0)" onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()">&#x27AD;</text>
+		<!-- Other arrows to use: &#8592; &#x279C; -->
+		<!-- onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()" -->
+	</svg>
+	<img src="moverWhale.png" class="whale" id="whale"></img> <!--960x480 px-->
+</body>
+</html>

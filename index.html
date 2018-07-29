@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<style>
+		body {
+			background-image: url("Whales.gif");
+			background-size:8% auto;
+			color:white;
+			text-shadow:
+				-.5px -.5px 0 #000,
+				.5px -.5px 0 #000,
+				-.5px .5px 0 #000,
+				.5px .5px 0 #000;
+			text-align:center;
+			font-size:200%;
+			font-family:"Raleway";
+		}
+		canvas {
+			cursor:pointer;
+			border:2px solid #FFFFFF;
+		}
+	</style>
+	<script>
+		function formatGButton() {
+			var canvas = document.getElementById("graphicsButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#008CDC";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.lineWidth=1;
+			ctx.fillStyle="#000000";
+			ctx.font="18px Raleway";
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Graphics Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function formatOButton() {
+			var canvas = document.getElementById("otherButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#008CDC";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.lineWidth=1;
+			ctx.fillStyle="#000000";
+			ctx.font="18px Raleway";
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Other Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function formatSButton() {
+			var canvas = document.getElementById("statsButton");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle = "#008CDC";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.lineWidth=1;
+			ctx.fillStyle="#000000";
+			ctx.font="18px Raleway";
+			ctx.textAlign="center";
+			ctx.fillText("Click here to go to the Stats Page!", canvas.width/2,  canvas.height/1.5);
+		}
+		function goToGraphics() {
+			window.location = "graphics.html";
+		}
+		function goToOther() {
+			window.location = "otherPage.html";
+		}
+		function goToStats() {
+			window.location = "stats.html";
+		}
+	</script>
+	<title>
+		James's WPI Home Page
+	</title>
+</head>
+<body onload="formatGButton(); formatOButton(); formatSButton();">
+	<div style="position: absolute; right: -2px; top:-2px;">
+	<canvas class="graphicsButton" id="graphicsButton" width="325" height="30" onclick="goToGraphics()"></canvas>
+	</div>
+	<div style="position: absolute; left: -2px; top:-2px;">
+	<canvas class="otherButton" id="otherButton" width="310" height="30" onclick="goToOther()"></canvas>
+	</div>
+	<div style="position: absolute; text-align:center; top:-2px; left:50%; margin-left:-155px;">
+	<canvas class="statsButton" id="statsButton" width="310" height="30" onclick="goToStats()"></canvas>
+	</div>
+	<h1>
+		This is the home page for James at WPI, summer 2018
+	</h1>
+
+	<p>
+		Greetings to the viewer of this website.
+		<br/>
+		<marquee>Thank you for visiting.</marquee>
+	</p>
+</body>
+</html>

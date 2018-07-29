@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Whale Stats</title>
+	
+	<script>
+		function requestListener() {
+			var data = JSON.parse(this.responseText);
+			console.log(data);
+			document.getElementById('statsDisplay').innerHTML = data;
+		}
+		function requestError(error) {
+			console.log('We have an issue', error);
+		}
+
+		function makeRequest() {
+			//Setup cmd -> chromium-browser --user-data-dir="/home/jnarayanan/public_html" --disable-web-security
+			var request = new XMLHttpRequest();
+			request.onload = requestListener;
+			request.onerror = requestError;
+			request.open('get', 'http://hotline.whalemuseum.org/api/count.json?species=orca&near=39.636891,-74.185587&radius=100', true);
+			request.setRequestHeader("Content-type", "application/json");
+			request.send();
+		}
+
+		/*
+		//var requestURL = 'hotline.whalemuseum.org/api/count.json?species=orca&near=39.636891,-74.185587&radius=100';
+		var request = new XMLHttpRequest();
+		request.open('GET', 'hotline.whalemuseum.org/api.json?species=orca');
+		request.responseType = 'json'
+	
+		request.send();
+	
+		request.onload = function() {
+		var numOrcas = request.response;
+		console.log(numOrcas);
+		};
+		*/
+	</script>
+	
+</head>
+<body>
+	Whale Stats
+	<button onclick="makeRequest()"> Get Stats</button>
+	<div id="statsDisplay">
+
+	</div>
+</body>
+</html>
