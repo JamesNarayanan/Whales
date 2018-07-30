@@ -37,11 +37,11 @@
 		}
 		function applyHidingProperties(elementID) {
 			var el = document.getElementById(elementID);
-			el.onClick="goBack()";
-			el.onMouseDown="hideFront()";
-			el.onMouseUp="backMaybe()";
-			el.onMouseOut="showFront()";
-			el.onMouseOver="hideMaybe()";
+			el.onclick=function() {goBack()};
+			el.onmousedown=function() {hideFront()};
+			el.onmouseup=function() {backMaybe()};
+			el.onmouseout=function() {showFront()};
+			el.onmouseover=function() {hideMaybe()};
 		}
 		function goBack()  {
 			window.location = document.referrer;
