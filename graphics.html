@@ -32,16 +32,19 @@
 			s.backgroundPosition = '' + wavePosition + 'px 0px';
 		}
 		function loadHidingProps() {
+			console.log("got to loadHidingProps");
 			applyHidingProperties("front");
 			applyHidingProperties("backArrow");
 		}
 		function applyHidingProperties(elementID) {
+			console.log("got to applyHidingProperties");
 			var el = document.getElementById(elementID);
 			el.onclick="goBack()";
 			el.onmousedown="hideFront()";
 			el.onmouseup="backMaybe()";
 			el.onmouseout="showFront()";
 			el.onmouseover="hideMaybe()";
+			console.log("finished");
 		}
 		function goBack()  {
 			window.location = document.referrer;
