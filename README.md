@@ -1,3 +1,3 @@
 # Whales
 Thanks for visiting James's Whales page from WPI Frontiers 2018
-This is a great site!
+<br>This is a great site!
