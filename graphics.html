@@ -11,14 +11,14 @@
 		var wavePosStep = 2; // How many pixels to move background each time
 		
 		function init() {
+			var waves = new Audio("waves.mp3");
+			waves.play();
 			var s = document.body.style;
 			s.backgroundImage = "url('https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clipartkid.com%2Fimages%2F203%2Flog-in-register-upload-clipart-zgS7Ak-clipart.png&f=1')";//1600x1200 px
 			s.backgroundRepeat = "repeat-x";
 			s.backgroundSize = 'auto ' + window.innerHeight + 'px'; //screen.heights
 			s.backgroundPosition = '0px 0px';
 			setInterval(stepWave, timestep);
-			var waves = new Audio("waves.mp3");
-			waves.play();
 		}
 		function backgroundResize() {
 			document.body.style.backgroundSize = 'auto ' + window.innerHeight + 'px'; 
