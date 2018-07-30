@@ -17,6 +17,8 @@
 			s.backgroundSize = 'auto ' + window.innerHeight + 'px'; //screen.heights
 			s.backgroundPosition = '0px 0px';
 			setInterval(stepWave, timestep);
+			var waves = new Audio("waves.mp3");
+			waves.play();
 		}
 		function backgroundResize() {
 			document.body.style.backgroundSize = 'auto ' + window.innerHeight + 'px'; 
