@@ -11,6 +11,7 @@
 		var wavePosStep = 2; // How many pixels to move background each time
 		
 		function init() {
+			loadHidingProps();
 			var waves = new Audio("waves.mp3");
 			waves.play();
 			var s = document.body.style;
@@ -30,7 +31,7 @@
 			wavePosition += wavePosStep; // Increment the position
 			s.backgroundPosition = '' + wavePosition + 'px 0px';
 		}
-		/*function loadHidingProps() {
+		function loadHidingProps() {
 			applyHidingProperties("front");
 			applyHidingProperties("backArrow");
 		}
@@ -41,7 +42,7 @@
 			el.onmouseup="backMaybe()";
 			el.onmouseout="showFront()";
 			el.onmouseover="hideMaybe()";
-		}*/
+		}
 		function goBack()  {
 			window.location = document.referrer;
 		}
@@ -108,8 +109,8 @@
 <body onmouseup="unhide()" onload="init();"onresize="backgroundResize()">
 	<svg width="400" height="110" style="position: absolute; left: 0px; top:0px;">
 		<rect id="back" width="49" height="39" style="fill:#999; cursor:pointer;"/>
-		<rect id="front" width="46" height="36" style="fill:#FBF57C; cursor:pointer;" onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()"/>
-		<text id="backArrow" dx="-38" dy="-4" class="svgText" style="cursor:pointer;" transform="rotate(180,0,0)" onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()">&#x27AD;</text>
+		<rect id="front" width="46" height="36" style="fill:#FBF57C; cursor:pointer;" />
+		<text id="backArrow" dx="-38" dy="-4" class="svgText" style="cursor:pointer;" transform="rotate(180,0,0)">&#x27AD;</text>
 		<!-- Other arrows to use: &#8592; &#x279C; -->
 		<!-- onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()" -->
 	</svg>
