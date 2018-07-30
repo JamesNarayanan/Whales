@@ -39,7 +39,7 @@
 			
 			(function fade() {
 				var val = parseFloat(el.style.opacity);
-				if ((val += 1/25) <= 1) {
+				if ((val += 1/25) <= 1) { //This line dictates the time of the animation. The bigger the denominator, the longer it lasts
 					el.style.opacity = val;
 					requestAnimationFrame(fade);
 				}
@@ -54,6 +54,11 @@
 			//Non-repeat:
 			//snd.src = src;
 			//snd.play();
+		}
+		function formatButtons() {
+			formatGButton();
+			formatHButton();
+			formatAButton();
 		}
 		function formatGButton() {
 			var canvas = document.getElementById("graphicsButton");
@@ -71,14 +76,14 @@
 			var ctx = canvas.getContext("2d");
 			ctx.fillStyle = "#00FFFF";
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
-			
+
 			ctx.fillStyle="#000000";
 			ctx.font="18px " + family;
 			ctx.textAlign="center";
 			ctx.fillText("Click here to go to the Home Page!", canvas.width/2,  canvas.height/1.5);
 		}
 		function formatAButton() {
-			var canvas = document.getElementById("statsButton");
+			var canvas = document.getElementById("articleButton");
 			var ctx = canvas.getContext("2d");
 			ctx.fillStyle = "#00FFFF";
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -132,18 +137,18 @@
 		}
 	</style>
 </head>
-<body onload="formatGButton(); formatHButton(); formatAButton();">
+<body onload="formatButtons();">
 	<!--<form action="graphics.html" style="text-align:right">
 		<input type="submit" value="Click here to go to Graphics Page!" style="background-color:#00FFFF"/>
 	</form>-->
 	<div style="position: absolute; right: -2px; top:-2px;">
-	<canvas class="border" id="graphicsButton" width="325" height="30" onclick="goToGraphics()"></canvas>
+	<canvas class="border" id="graphicsButton" width="320" height="30" onclick="goToGraphics()"></canvas>
+	</div>
+	<div style="position: absolute; text-align:center; top:-2px; left:50%; margin-left:-160px;">
+	<canvas class="border" id="articleButton" width="320" height="30" onclick="goToArticles()"></canvas>
 	</div>
 	<div style="position: absolute; left: -2px; top:-2px;">
-	<canvas class="border" id="homeButton" width="310" height="30" onclick="goHome()"></canvas>
-	</div>
-	<div style="position: absolute; text-align:center; top:-2px; left:50%; margin-left:-156px;">
-	<canvas class="border" id="statsButton" width="312" height="30" onclick="goToArticles()"></canvas>
+	<canvas class="border" id="homeButton" width="320" height="30" onclick="goHome()"></canvas>
 	</div>
 	<div class="center">
 		<h1>Welcome to the Other Page!</h1>
