@@ -26,11 +26,17 @@
 			var radius = $("#radius").val();
 			radius *= 0.000621371; // Meters to miles conversion
 
+			var orca_type = "";
+			if(species==="orca" && $("#orcaType").val()!="all")
+				orca_type = "&orca_type=" + $("#orcaType").val()
+			
+			console.log(orca_type);
+
 			var request = new XMLHttpRequest();
 			request.onload = requestListener;
 			request.onerror = requestError;
 			
-			request.open('get', `http://hotline.whalemuseum.org/api/count.json?species=${species}&near=${lat},${lon}&radius=${radius}`, true);
+			request.open('get', `http://hotline.whalemuseum.org/api/count.json?species=${species}&near=${lat},${lon}&radius=${radius}${orca_type}`, true);
 			request.setRequestHeader("Content-type", "application/json");
 			request.send();
 		}
@@ -44,10 +50,10 @@
 			background-color: aqua;
 			font-family: 'Courier New', Courier, monospace;
 		}
-		#selection,
+		#parameters,
 		#countDisplay {
 			margin: 0 auto;
-			width: 90%;
+			width: 90vw;
 			min-width: 300px;
 			background-color: rgba(0,0,0,.2);
 			border-radius: 2px;
@@ -56,7 +62,7 @@
 			flex-direction: column;
 			justify-content: right;
 		}
-		#selection * {
+		#parameters * {
 			margin: 0 auto 10px auto;
 			width: 50%;
 			min-width: 200px;
@@ -67,15 +73,23 @@
 			background-color: rgba(0,0,0,.15);
 			border: none;
 		}
-		#selection *:focus {
+		#parameters *:focus {
 			outline: 2px solid rgba(0,0,0,.5);
 		}
-		#selection label {
+		#parameters label {
 			margin: 0 auto 2px auto;
 			padding: 0;
 			background: none;
 		}
-		#selection input[type=submit] {
+		#orcaTypeContainer {
+			margin: 0;
+			padding: 0;
+			background: none;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		#parameters input[type=submit] {
 			margin: 0;
 			padding: 10px 15px;
 			width: 100%;
@@ -88,10 +102,10 @@
 			cursor: pointer;
 			transition: .2s;
 		}
-		#selection input[type=submit]:hover {
+		#parameters input[type=submit]:hover {
 			background-color: rgba(0,0,0,.5);
 		}
-		#selection input[type=submit]:focus {
+		#parameters input[type=submit]:focus {
 			outline: none;
 		}
 		#map {
@@ -124,7 +138,7 @@
 		<a href="./graphics.html">Graphics</a>
 	</nav>
 
-	<form id="selection"  onsubmit="makeRequest(); return false;">
+	<form id="parameters" onsubmit="makeRequest(); return false;">
 		<label for="species" style="margin-top: 10px;">Species:</label>
 		<select id="species">
 			<option value="orca" default>Orca</option>
@@ -133,7 +147,7 @@
 			<option value="humpback">Humpback</option>
 			<option value="atlantic white-sided dolphin">Atlantic White-sided Dolphin</option>
 			<option value="pacific white-sided dolphin">Pacific White-sided Dolphin</option>
-			<option value="dalls porpoise">Dalls Porpoise</option> Harbor Porpoise</option>
+			<option value="dalls porpoise">Dalls Porpoise Harbor Porpoise</option>
 			<option value="harbor seal">Harbor Seal</option>
 			<option value="elephant seal">Elephant Seal</option>
 			<option value="southern elephant seal">Southern Elephant Seal</option>
@@ -143,6 +157,17 @@
 			<option value="other">Other</option>
 			<option value="unkown">Unknown</option>
 		</select>
+		<div id="orcaTypeContainer">
+			<label for="orcaType">Orca Type:</label>
+			<select id="orcaType">
+				<option value="all" default>All</option>
+				<option value="southern+resident">Southern Resident</option>
+				<option value="northern+resident">Northern Resident</option>
+				<option value="transient">Transient</option>
+				<option value="offshore">Offshore</option>
+			</select>
+		</div>
+
 		<label for="radius">Radius (m):</label>
 		<input id="radius" type="number" placeholder="Search Radius (m)" step="any" required/>
 
@@ -156,7 +181,7 @@
 
 		<input type="submit" value="Get Count"/>
 	</form>
-
+	
 	<div id="map"></div>
 
 	<div id="countDisplay">
@@ -181,6 +206,13 @@
 			onchanged: function(currentLocation, radius, isMarkerDropped) {
 				console.log(currentLocation);
 			}
+		});
+
+		$("#species").change(function() {
+			if($(this).val()!="orca")
+				$("#orcaTypeContainer").css('display', 'none');
+			else
+				$("#orcaTypeContainer").css('display', 'flex');
 		});
 	</script>
 </body>
