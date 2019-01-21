@@ -6,7 +6,7 @@
 	<title>The Sounds Page</title>
 	<style>
 		body {
-			background-image: url("./bin/soundsPageBg.jpg");
+			background-image: url("./resources/soundsPageBg.jpg");
 			background-repeat:no-repeat;
 			background-attachment:fixed;
 			background-position:top center;
@@ -44,7 +44,7 @@
 </head>
 <body>
 	<nav>
-		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
+		<a href="./index.html" id="logo"><img src="./resources/whales.gif"/></a>
 		<a href="./sounds.html">Sounds</a>
 		<a href="./articles.html">Articles</a>
 		<a href="./stats.html">Stats</a>
@@ -56,7 +56,7 @@
 		<div style="user-select: none">
 			<label id="babyLabel">My Baby</label>
 			<br>
-			<img src = "./bin/myBaby.jpeg" id="baby"/>
+			<img src = "./resources/myBaby.jpeg" id="baby"/>
 			<br>
 		</div>
 	</div>
@@ -82,7 +82,7 @@
 		});
 		$("#baby").click(function() {
 			$("#noisesContainer").fadeIn(400).fadeOut(400);
-			sounds.push(new Audio("./bin/beauty.mp3"));
+			sounds.push(new Audio("./resources/beauty.mp3"));
 			sounds[sounds.length-1].play();
 		});
 	</script>

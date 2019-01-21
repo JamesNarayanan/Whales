@@ -10,7 +10,7 @@
 		// As timestep becomes longer, the amount the waves move every step does too
 		
 		function init() {
-			var waves = new Audio("./bin/waves.mp3");
+			var waves = new Audio("./resources/waves.mp3");
 			waves.play();
 			setInterval(stepWave, timestep);
 		}
@@ -24,7 +24,7 @@
 	</script>
 	<style>
 		body {
-			background-image: url("./bin/waves.png");
+			background-image: url("./resources/waves.png");
 			background-repeat:repeat-x;
 			background-size: 100vh;
 			overflow: hidden;
@@ -56,13 +56,13 @@
 </head>
 <body onload="init()">
 	<nav>
-		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
+		<a href="./index.html" id="logo"><img src="./resources/whales.gif"/></a>
 		<a href="./sounds.html">Sounds</a>
 		<a href="./articles.html">Articles</a>
 		<a href="./stats.html">Stats</a>
 		<a href="./graphics.html">Graphics</a>
 	</nav>
 
-	<img src="./bin/movingWhale.png" id="whale"></img> <!--960x480 px-->
+	<img src="./resources/movingWhale.png" id="whale"></img> <!--960x480 px-->
 </body>
 </html>
