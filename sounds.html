@@ -105,7 +105,7 @@
 	</script>
 	<style>
 		body {
-			background-image: url(" otherWhale.jpg");
+			background-image: url("./bin/soundsPageBg.jpg");
 			background-repeat:no-repeat;
 			background-attachment:fixed;
 			background-position:top center;
@@ -114,12 +114,9 @@
 			font-family: 'Raleway', sans-serif;
 			font-size:200%;
 		}
-		img {
+		#baby {
 			border:5px solid white;
 			box-shadow:5px 5px 5px #999;
-		}
-		canvas {
-			cursor:pointer;
 		}
 		.center {
 			text-align:center;
@@ -133,23 +130,20 @@
 		.noises {
 			font-size:125%;
 			text-shadow:5px 5px 5px #aaa;
-			font-color:#00FFFF;
+			color:#00FFFF;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 </head>
-<body onload="formatButtons();">
-	<!--<form action="graphics.html" style="text-align:right">
-		<input type="submit" value="Click here to go to Graphics Page!" style="background-color:#00FFFF"/>
-	</form>-->
-	<div style="position: absolute; right: -2px; top:-2px;">
-	<canvas class="border" id="graphicsButton" width="320" height="30" onclick="goToGraphics()"></canvas>
-	</div>
-	<div style="position: absolute; text-align:center; top:-2px; left:50%; margin-left:-160px;">
-	<canvas class="border" id="articleButton" width="320" height="30" onclick="goToArticles()"></canvas>
-	</div>
-	<div style="position: absolute; left: -2px; top:-2px;">
-	<canvas class="border" id="homeButton" width="320" height="30" onclick="goHome()"></canvas>
-	</div>
+<body>
+	<nav>
+		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
+		<a href="./sounds.html">Sounds</a>
+		<a href="./articles.html">Articles</a>
+		<a href="./stats.html">Stats</a>
+		<a href="./graphics.html">Graphics</a>
+	</nav>
+	
 	<div class="center">
 		<h1>Welcome to the Other Page!</h1>
 		<div class="noselect">
