@@ -4,19 +4,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Libre+Franklin|Noto+Serif" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 	<title>Whale Articles</title>
-	<script>
-		function goToLink(address) {
-			window.location = address;
-		}
-		function starvingShow() {
-			document.getElementById("starving").style.display = "block";
-		}
-	</script>
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
-		}
 		body {
 			background: cyan;
 		}
@@ -24,12 +12,6 @@
 			margin: 0;
 			border: none;
 			box-shadow: none;
-		}
-		.learnMore {
-			font-family: "Raleway";
-			font-size: 2.75rem;
-			color: blue;
-			text-align: center;
 		}
 		#list {
 			margin: 10px 15px;
@@ -39,6 +21,10 @@
 		.article {
 			cursor:pointer;
 			background-color: rgba(0,0,0,.2);
+		}
+		a {
+			text-decoration: none;
+			color: initial;
 		}
 		.titleText,
 		.bodyPreview,
@@ -66,7 +52,7 @@
 			padding-bottom: 0;
 			color: rgb(240, 240, 240);
 		}
-		.imgPar {
+		.imgContainer {
 			float: right;
 		}
 		hr {
@@ -93,108 +79,124 @@
 	</nav>
 	
 	<div id="list">
-		<div class="article" id="britannica" onclick="goToLink('https://www.britannica.com/animal/whale')">
-			<br>
-			<p class="titleText">What is A Whale?</p>
-			<p class="bodyPreview">Whale, any of the larger species of aquatic mammals belonging to the order Cetacea. The term whale can be used in reference to any cetacean, including porpoises and dolphins, but in general it is applied to those more than 3 metres (10 feet) long.</p>
-			<br>
-			<p class="author">By THE EDITORS OF ENCYCLOPAEDIA BRITANNICA</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://www.britannica.com/animal/whale">
+			<div class="article" id="britannica">
+				<br>
+				<p class="titleText">What is A Whale?</p>
+				<p class="bodyPreview">Whale, any of the larger species of aquatic mammals belonging to the order Cetacea. The term whale can be used in reference to any cetacean, including porpoises and dolphins, but in general it is applied to those more than 3 metres (10 feet) long.</p>
+				<br>
+				<p class="author">By THE EDITORS OF ENCYCLOPAEDIA BRITANNICA</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" id="wikipedia" onclick="goToLink('https://en.wikipedia.org/wiki/Whale')">
-			<br>
-			<p class="titleText">What is A Whale?</p>
-			<p class="bodyPreview">Whales are a widely distributed and diverse group of fully aquatic placental marine mammals. They are an informal grouping within the infraorder Cetacea, usually excluding dolphins and porpoises. Whales, dolphins and porpoises belong to the order Cetartiodactyla with even-toed ungulates and their closest living relatives are the hippopotamuses, having diverged about 40 million years ago...</p>
-			<br>
-			<p class="author">By THE WRITERS OF WIKIPEDIA</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://en.wikipedia.org/wiki/Whale">
+			<div class="article" id="wikipedia">
+				<br>
+				<p class="titleText">What is A Whale?</p>
+				<p class="bodyPreview">Whales are a widely distributed and diverse group of fully aquatic placental marine mammals. They are an informal grouping within the infraorder Cetacea, usually excluding dolphins and porpoises. Whales, dolphins and porpoises belong to the order Cetartiodactyla with even-toed ungulates and their closest living relatives are the hippopotamuses, having diverged about 40 million years ago...</p>
+				<br>
+				<p class="author">By THE WRITERS OF WIKIPEDIA</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/07/16/science/ancient-romans-whales.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<br>
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/07/17/science/17TB-ROMANWHALING6/17TB-ROMANWHALING6-mediumThreeByTwo210-v3.jpg"/></p>
-			<p class="titleText">Ancient Romans Hunted 'Sea Monsters.' Were They Whales?</p>
-			<p class="bodyPreview">Testing of archaeological remains show that two whale species once swam in the Mediterranean, suggesting that the Romans conducted industrial-scale whaling.</p>
-			<br>
-			<p class="author">By NICHOLAS ST. FLEUR</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://www.nytimes.com/2018/07/16/science/ancient-romans-whales.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<br>
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/07/17/science/17TB-ROMANWHALING6/17TB-ROMANWHALING6-mediumThreeByTwo210-v3.jpg"/></div>
+				<p class="titleText">Ancient Romans Hunted 'Sea Monsters.' Were They Whales?</p>
+				<p class="bodyPreview">Testing of archaeological remains show that two whale species once swam in the Mediterranean, suggesting that the Romans conducted industrial-scale whaling.</p>
+				<br>
+				<p class="author">By NICHOLAS ST. FLEUR</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/07/09/science/orcas-whales-endangered.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<br>
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/07/10/science/10SCI-ORCAS1/10SCI-ORCAS1-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">Orcas of the Pacific Northwest Are <span onclick="starvingShow()">Starving</span> and Disappearing</p>
-			<p class="bodyPreview">The population of endangered killer whales has hit a 30-year-low, number only 75 this year.</p>
-			<br>
-			<p class="author">By JIM ROBBINS</p>
-			<br>
-			<hr>
-		</div>
-		<img id="starving" src="https://dqbasmyouzti2.cloudfront.net/assets/content/cache/made/content/images/articles/oliver_721_420_80_s_c1.jpg" style="display:none; margin-bottom: 8px;"/>
+		<a href="https://www.nytimes.com/2018/07/09/science/orcas-whales-endangered.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<br>
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/07/10/science/10SCI-ORCAS1/10SCI-ORCAS1-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">Orcas of the Pacific Northwest Are Starving and Disappearing</p>
+				<p class="bodyPreview">The population of endangered killer whales has hit a 30-year-low, number only 75 this year.</p>
+				<br>
+				<p class="author">By JIM ROBBINS</p>
+				<br>
+				<hr>
+			</div>
+		</a>
+		
+		<a href="https://www.nytimes.com/2018/06/23/opinion/sunday/wrap-your-mind-around-a-whale.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<br>
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/06/24/opinion/sunday/24pyenson/24pyenson-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">Wrap Your Mind Around a Whale</p>
+				<p class="bodyPreview">Why whales got so big, and what that tells us about evolution.</p>
+				<br>
+				<p class="author">By NICK PYENSON</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/06/23/opinion/sunday/wrap-your-mind-around-a-whale.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<br>
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/06/24/opinion/sunday/24pyenson/24pyenson-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">Wrap Your Mind Around a Whale</p>
-			<p class="bodyPreview">Why whales got so big, and what that tells us about evolution.</p>
-			<br>
-			<p class="author">By NICK PYENSON</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://www.nytimes.com/2018/05/01/science/humpback-whale-antarctica.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<br>
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/05/08/science/02TB-WHALES/02TB-WHALES-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">Humpback Whale Baby Boom Near Antarctica</p>
+				<p class="bodyPreview">Pregnancy rates in the southern oceans are high, according to a study that showed the species is rebounding, a rare piece of good news for whales.</p>
+				<br>
+				<p class="author">By KAREN WEINTRAUB</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/05/01/science/humpback-whale-antarctica.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<br>
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/05/08/science/02TB-WHALES/02TB-WHALES-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">Humpback Whale Baby Boom Near Antarctica</p>
-			<p class="bodyPreview">Pregnancy rates in the southern oceans are high, according to a study that showed the species is rebounding, a rare piece of good news for whales.</p>
-			<br>
-			<p class="author">By KAREN WEINTRAUB</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://www.nytimes.com/2018/04/04/science/baleen-whales-evolution-genome.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/04/05/science/05TB-WHALES1/05TB-WHALES1-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">Baleen Whales Intermingled as They Evolved, and Share DNA With Distant Cousins</p>
+				<p class="bodyPreview">Genome sequencing of six species of baleen whales shows how they have evolved into more of a network and have a wide range of genetic diversity, according to a new study.</p>
+				<br>
+				<p class="author">By KAREN WEINTRAUB</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/04/04/science/baleen-whales-evolution-genome.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/04/05/science/05TB-WHALES1/05TB-WHALES1-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">Baleen Whales Intermingled as They Evolved, and Share DNA With Distant Cousins</p>
-			<p class="bodyPreview">Genome sequencing of six species of baleen whales shows how they have evolved into more of a network and have a wide range of genetic diversity, according to a new study.</p>
-			<br>
-			<p class="author">By KAREN WEINTRAUB</p>
-			<br>
-			<hr>
-		</div>
+		<a href="https://www.nytimes.com/2018/03/23/world/australia/beached-whales.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/03/24/world/24oz-whales/merlin_135890046_a5852997-9552-42f2-b42f-d806e6676550-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">150 Whales Beached in Australia, as Rescuers Fight to Save Them </p>
+				<p class="bodyPreview">Poor weather and the threat of sharks were hindering emergency efforts.</p>
+				<br>
+				<p class="author">By RUSSELL GOLDMAN</p>
+				<br>
+				<hr>
+			</div>
+		</a>
 		
 		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/03/23/world/australia/beached-whales.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/03/24/world/24oz-whales/merlin_135890046_a5852997-9552-42f2-b42f-d806e6676550-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">150 Whales Beached in Australia, as Rescuers Fight to Save Them </p>
-			<p class="bodyPreview">Poor weather and the threat of sharks were hindering emergency efforts.</p>
-			<br>
-			<p class="author">By RUSSELL GOLDMAN</p>
-			<br>
-			<hr>
-		</div>
-		
-		
-		<div class="article" onclick="goToLink('https://www.nytimes.com/2018/02/28/science/north-atlantic-whales-endangered.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling')">
-			<p class="imgPar"><img src="https://static01.nyt.com/images/2018/03/06/science/01tb-whales/01tb-whales-mediumThreeByTwo210.jpg"/></p>
-			<p class="titleText">No Sign of Newborn North Atlantic Whales This Breeding Season</p>
-			<p class="bodyPreview">Researchers tracking the endangered species grounds for birthing calves haven’t seen one baby this season, further raising the specter of extinction for the whales.</p>
-			<br>
-			<p class="author">By KAREN WEINTRAUB</p>
-			<br>
-			
-		</div>
+		<a href="https://www.nytimes.com/2018/02/28/science/north-atlantic-whales-endangered.html?rref=collection%2Ftimestopic%2FWhales%20and%20Whaling">
+			<div class="article">
+				<div class="imgContainer"><img src="https://static01.nyt.com/images/2018/03/06/science/01tb-whales/01tb-whales-mediumThreeByTwo210.jpg"/></div>
+				<p class="titleText">No Sign of Newborn North Atlantic Whales This Breeding Season</p>
+				<p class="bodyPreview">Researchers tracking the endangered species grounds for birthing calves haven’t seen one baby this season, further raising the specter of extinction for the whales.</p>
+				<br>
+				<p class="author">By KAREN WEINTRAUB</p>
+				<br>
+				
+			</div>
+		</a>
 	</div>
 </body>
 </html>
