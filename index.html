@@ -29,58 +29,11 @@
 		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="./navStyle.css">
-	<script>
-		function formatGButton() {
-			var canvas = document.getElementById("graphicsButton");
-			var ctx = canvas.getContext("2d");
-			ctx.fillStyle = "#008CDC";
-			ctx.fillRect(0, 0, canvas.width, canvas.height);
-			
-			ctx.lineWidth=1;
-			ctx.fillStyle="#000000";
-			ctx.font="18px Raleway";
-			ctx.textAlign="center";
-			ctx.fillText("Click here to go to the Graphics Page!", canvas.width/2,  canvas.height/1.5);
-		}
-		function formatOButton() {
-			var canvas = document.getElementById("otherButton");
-			var ctx = canvas.getContext("2d");
-			ctx.fillStyle = "#008CDC";
-			ctx.fillRect(0, 0, canvas.width, canvas.height);
-			
-			ctx.lineWidth=1;
-			ctx.fillStyle="#000000";
-			ctx.font="18px Raleway";
-			ctx.textAlign="center";
-			ctx.fillText("Click here to go to the Other Page!", canvas.width/2,  canvas.height/1.5);
-		}
-		function formatSButton() {
-			var canvas = document.getElementById("statsButton");
-			var ctx = canvas.getContext("2d");
-			ctx.fillStyle = "#008CDC";
-			ctx.fillRect(0, 0, canvas.width, canvas.height);
-			
-			ctx.lineWidth=1;
-			ctx.fillStyle="#000000";
-			ctx.font="18px Raleway";
-			ctx.textAlign="center";
-			ctx.fillText("Click here to go to the Stats Page!", canvas.width/2,  canvas.height/1.5);
-		}
-		function goToGraphics() {
-			window.location = "graphics.html";
-		}
-		function goToOther() {
-			window.location = "otherPage.html";
-		}
-		function goToStats() {
-			window.location = "stats.html";
-		}
-	</script>
 	<title>
 		James's WPI Home Page
 	</title>
 </head>
-<body onload="formatGButton(); formatOButton(); formatSButton();">
+<body">
 	<nav>
 		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
 		<a href="./sounds.html">Sounds</a>
