@@ -2,6 +2,8 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyDIzgKLSfgjbO7DNWUDy1sCuRfyPdP8o6A&libraries=places'></script>
+	<script src="http://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 	<title>Whale Stats</title>
 	<script>
@@ -17,18 +19,18 @@
 		function makeRequest() {
 			var species = $("#species").val();
 			species = species.replace(" ", "+");
+			
+			var lat = $("#lat").val();
+			var lon = $("#lon").val();
 
 			var radius = $("#radius").val();
-			if(radius=="") {
-				alert("You must enter a radius to search");
-				return false;
-			}
+			radius *= 0.000621371; // Meters to miles conversion
 
 			var request = new XMLHttpRequest();
 			request.onload = requestListener;
 			request.onerror = requestError;
 			
-			request.open('get', `http://hotline.whalemuseum.org/api/count.json?species=${species}&near=39.636891,-74.185587&radius=${radius}`, true);
+			request.open('get', `http://hotline.whalemuseum.org/api/count.json?species=${species}&near=${lat},${lon}&radius=${radius}`, true);
 			request.setRequestHeader("Content-type", "application/json");
 			request.send();
 		}
@@ -55,7 +57,7 @@
 			justify-content: right;
 		}
 		#selection * {
-			margin: 10px auto;
+			margin: 0 auto 10px auto;
 			width: 50%;
 			min-width: 200px;
 			padding: 10px 15px;
@@ -67,6 +69,11 @@
 		}
 		#selection *:focus {
 			outline: 2px solid rgba(0,0,0,.5);
+		}
+		#selection label {
+			margin: 0 auto 2px auto;
+			padding: 0;
+			background: none;
 		}
 		#selection input[type=submit] {
 			margin: 0;
@@ -87,8 +94,17 @@
 		#selection input[type=submit]:focus {
 			outline: none;
 		}
+		#map {
+			margin: 50px auto;
+			padding: 0;
+			border: 0;
+			width: 500px;
+			height: 400px;
+			position: relative;
+			overflow: hidden;
+		}
 		#countDisplay {
-			margin-top: 50px;
+			margin: 50px auto;
 		}
 		#countDisplay h1 {
 			font-size: 2rem;
@@ -109,6 +125,7 @@
 	</nav>
 
 	<form id="selection"  onsubmit="makeRequest(); return false;">
+		<label for="species" style="margin-top: 10px;">Species:</label>
 		<select id="species">
 			<option value="orca" default>Orca</option>
 			<option value="minke">Minke</option>
@@ -126,12 +143,45 @@
 			<option value="other">Other</option>
 			<option value="unkown">Unknown</option>
 		</select>
-		<input id="radius" type="number" min="0" step=".1" placeholder="Search Radius (mi)"/>
+		<label for="radius">Radius (m):</label>
+		<input id="radius" type="number" placeholder="Search Radius (m)" step="any" required/>
+
+		<label for="lat">Latitude:</label>
+		<input id="lat" type="number" placeholder="Latitude" step="any" />
+		<label for="lon">Longitude:</label>
+		<input id="lon" type="number" placeholder="Longitude" step="any" />
+
+		<label for="address">Address:</label>
+		<input id="address" type="text" placeholder="Address" style="cursor: not-allowed;" readonly/>
+
 		<input type="submit" value="Get Count"/>
 	</form>
+
+	<div id="map"></div>
+
 	<div id="countDisplay">
 		<h1>Count:</h1>
 		<div id="countContainer"></div>
 	</div>
+
+	<script>
+		$('#map').locationpicker({
+			location: {
+				latitude: 40.7828647,
+				longitude: -73.96535510000001
+			},
+			radius: 100000,
+			zoom: 5,
+			inputBinding: {
+				latitudeInput: $('#lat'),
+				longitudeInput: $('#lon'),
+				radiusInput: $('#radius'),
+				locationNameInput: $('#address')
+			},
+			onchanged: function(currentLocation, radius, isMarkerDropped) {
+				console.log(currentLocation);
+			}
+		});
+	</script>
 </body>
 </html>
