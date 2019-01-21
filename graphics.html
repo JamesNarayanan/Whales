@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 	<title>Graphics</title>
 	<script>
-		var family = "Raleway";
-		var hidden = false;
 		var timestep = 100/6; // msec between movements of background
 		var wavePosition = 0; // How far to shift wave background (current position)
-		var wavePosStep = 2; // How many pixels to move background each time
+		var wavePosStep = timestep/4; // How many pixels to move background each time
+		// As timestep becomes longer, the amount the waves move every step does too
 		
 		function init() {
-			loadHidingProps();
-			var waves = new Audio("waves.mp3");
+			var waves = new Audio("./bin/waves.mp3");
 			waves.play();
-			var s = document.body.style;
-			s.backgroundImage = "url('https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clipartkid.com%2Fimages%2F203%2Flog-in-register-upload-clipart-zgS7Ak-clipart.png&f=1')";//1600x1200 px
-			s.backgroundRepeat = "repeat-x";
-			s.backgroundSize = 'auto ' + window.innerHeight + 'px'; //screen.heights
-			s.backgroundPosition = '0px 0px';
 			setInterval(stepWave, timestep);
-		}
-		function backgroundResize() {
-			document.body.style.backgroundSize = 'auto ' + window.innerHeight + 'px'; 
 		}
 		
 		// Moves the background one increment
@@ -31,57 +21,15 @@
 			wavePosition += wavePosStep; // Increment the position
 			s.backgroundPosition = '' + wavePosition + 'px 0px';
 		}
-		function loadHidingProps() {
-			applyHidingProperties("front");
-			applyHidingProperties("backArrow");
-		}
-		function applyHidingProperties(elementID) {
-			var el = document.getElementById(elementID);
-			el.onclick=function() {goBack()};
-			el.onmousedown=function() {hideFront()};
-			el.onmouseup=function() {backMaybe()};
-			el.onmouseout=function() {showFront()};
-			el.onmouseover=function() {hideMaybe()};
-		}
-		function goBack()  {
-			window.location = document.referrer;
-		}
-		function hideFront() {
-			var front = document.getElementById("front");
-			front.style.opacity = "0";
-			hidden = true;
-		}
-		function showFront() {
-			var front = document.getElementById("front");
-			front.style.opacity = "1";
-		}
-		function hideMaybe() { //Hides the front if mouse is still pressed
-			if(hidden)
-				front.style.opacity = "0";
-		}
-		function backMaybe() {
-			if(hidden)
-				goBack();
-		}
-		function unhide() {
-			hidden = false;
-			front.style.opacity = "1";
-		}
 	</script>
 	<style>
 		body {
-			background-image: url("waves.png");
+			background-image: url("./bin/waves.png");
 			background-repeat:repeat-x;
-			background-size:20%;
-			background-attachment:fixed;
+			background-size: 100vh;
+			overflow: hidden;
 		}
-		.svgText {
-			font-family:'Raleway';
-			text-align:center;
-			font-size:275%;
-			user-select:none;
-		}
-		.whale {
+		#whale {
 			height:10vw;
 			width:20vw;
 			user-select:none;
@@ -106,14 +54,15 @@
 		}
 	</style>
 </head>
-<body onmouseup="unhide()" onload="init();"onresize="backgroundResize()">
-	<svg width="400" height="110" style="position: absolute; left: 0px; top:0px;">
-		<rect id="back" width="49" height="39" style="fill:#999; cursor:pointer;"/>
-		<rect id="front" width="46" height="36" style="fill:#FBF57C; cursor:pointer;" />
-		<text id="backArrow" dx="-38" dy="-4" class="svgText" style="cursor:pointer;" transform="rotate(180,0,0)">&#x27AD;</text>
-		<!-- Other arrows to use: &#8592; &#x279C; -->
-		<!-- onclick="goBack()" onmousedown="hideFront()" onmouseup="backMaybe()" onmouseout="showFront()" onmouseover="hideMaybe()" -->
-	</svg>
-	<img src="moverWhale.png" class="whale" id="whale"></img> <!--960x480 px-->
+<body onload="init()">
+	<nav>
+		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
+		<a href="./sounds.html">Sounds</a>
+		<a href="./articles.html">Articles</a>
+		<a href="./stats.html">Stats</a>
+		<a href="./graphics.html">Graphics</a>
+	</nav>
+
+	<img src="./bin/movingWhale.png" id="whale"></img> <!--960x480 px-->
 </body>
 </html>
