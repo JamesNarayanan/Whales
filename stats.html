@@ -108,24 +108,36 @@
 		#parameters input[type=submit]:focus {
 			outline: none;
 		}
+		#bottom {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		#map,
+		#countDisplay {
+			margin: 50px 25px;
+			width: 45%;
+			min-width: 400px;
+			height: 500px;
+		}
 		#map {
-			margin: 50px auto;
 			padding: 0;
 			border: 0;
-			width: 500px;
-			height: 400px;
 			position: relative;
 			overflow: hidden;
 		}
 		#countDisplay {
-			margin: 50px auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		#countDisplay h1 {
-			font-size: 2rem;
+			font-size: 4rem;
 			color: rgba(0,0,0,.4);
 		}
 		#countContainer {
-			font-size: 2.5rem;
+			font-size: 5rem;
 		}
 	</style>
 </head>
@@ -182,11 +194,13 @@
 		<input type="submit" value="Get Count"/>
 	</form>
 	
-	<div id="map"></div>
+	<div id="bottom">
+		<div id="map"></div>
 
-	<div id="countDisplay">
-		<h1>Count:</h1>
-		<div id="countContainer"></div>
+		<div id="countDisplay">
+			<h1>Count:</h1>
+			<div id="countContainer"></div>
+		</div>
 	</div>
 
 	<script>
