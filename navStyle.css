@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 nav {
     background: rgba(0, 0, 0, .4);
     margin: 20px 40px;
     border: 2px solid white;
     font-size: 2rem;
+    font-family: "Raleway", sans-serif;
     min-width: 12rem;
     display: flex;
     flex-direction: row;
@@ -25,6 +27,7 @@ nav a {
 }
 #logo img {
     max-height: inherit;
+    border-radius: 5px;
 }
 nav a:hover {
     background: rgba(0,140,220, .75);
