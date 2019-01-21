@@ -1,0 +1,31 @@
+nav {
+    background: rgba(0, 0, 0, .4);
+    margin: 20px 40px;
+    border: 2px solid white;
+    font-size: 2rem;
+    min-width: 12rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+nav a {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+    transition: .15s;
+}
+#logo {
+    margin: 10px 0;
+    padding: 0px;
+    max-height: 4rem;
+}
+#logo img {
+    max-height: inherit;
+}
+nav a:hover {
+    background: rgba(0,140,220, .75);
+}
