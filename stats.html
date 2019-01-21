@@ -1,50 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 	<title>Whale Stats</title>
-	
 	<script>
 		function requestListener() {
 			var data = JSON.parse(this.responseText);
 			console.log(data);
-			document.getElementById('statsDisplay').innerHTML = data;
+			$("#countContainer").html(data);
 		}
 		function requestError(error) {
 			console.log('We have an issue', error);
 		}
 
 		function makeRequest() {
-			//Setup cmd -> chromium-browser --user-data-dir="/home/jnarayanan/public_html" --disable-web-security
+			var species = $("#species").val();
+			species = species.replace(" ", "+");
+
+			var radius = $("#radius").val();
+			if(radius=="") {
+				alert("You must enter a radius to search");
+				return false;
+			}
+
 			var request = new XMLHttpRequest();
 			request.onload = requestListener;
 			request.onerror = requestError;
-			request.open('get', 'http://hotline.whalemuseum.org/api/count.json?species=orca&near=39.636891,-74.185587&radius=100', true);
+			
+			request.open('get', `http://hotline.whalemuseum.org/api/count.json?species=${species}&near=39.636891,-74.185587&radius=${radius}`, true);
 			request.setRequestHeader("Content-type", "application/json");
 			request.send();
 		}
-
-		/*
-		//var requestURL = 'hotline.whalemuseum.org/api/count.json?species=orca&near=39.636891,-74.185587&radius=100';
-		var request = new XMLHttpRequest();
-		request.open('GET', 'hotline.whalemuseum.org/api.json?species=orca');
-		request.responseType = 'json'
-	
-		request.send();
-	
-		request.onload = function() {
-		var numOrcas = request.response;
-		console.log(numOrcas);
-		};
-		*/
 	</script>
-	
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background-color: aqua;
+			font-family: 'Courier New', Courier, monospace;
+		}
+		#selection,
+		#countDisplay {
+			margin: 0 auto;
+			width: 90%;
+			min-width: 300px;
+			background-color: rgba(0,0,0,.2);
+			border-radius: 2px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: right;
+		}
+		#selection * {
+			margin: 10px auto;
+			width: 50%;
+			min-width: 200px;
+			padding: 10px 15px;
+			font-size: 1rem;
+			font-family: inherit;
+			text-align: center;
+			background-color: rgba(0,0,0,.15);
+			border: none;
+		}
+		#selection *:focus {
+			outline: 2px solid rgba(0,0,0,.5);
+		}
+		#selection input[type=submit] {
+			margin: 0;
+			padding: 10px 15px;
+			width: 100%;
+			font-size: 1rem;
+			color: white;
+			background-color: rgba(0,0,0,.4);
+			border: none;
+			border-bottom-left-radius: inherit;
+			border-bottom-right-radius: inherit;
+			cursor: pointer;
+			transition: .2s;
+		}
+		#selection input[type=submit]:hover {
+			background-color: rgba(0,0,0,.5);
+		}
+		#selection input[type=submit]:focus {
+			outline: none;
+		}
+		#countDisplay {
+			margin-top: 50px;
+		}
+		#countDisplay h1 {
+			font-size: 2rem;
+			color: rgba(0,0,0,.4);
+		}
+		#countContainer {
+			font-size: 2.5rem;
+		}
+	</style>
 </head>
 <body>
-	Whale Stats
-	<button onclick="makeRequest()"> Get Stats</button>
-	<div id="statsDisplay">
-		
+	<nav>
+		<a href="./index.html" id="logo"><img src="./bin/whales.gif"/></a>
+		<a href="./sounds.html">Sounds</a>
+		<a href="./articles.html">Articles</a>
+		<a href="./stats.html">Stats</a>
+		<a href="./graphics.html">Graphics</a>
+	</nav>
+
+	<form id="selection"  onsubmit="makeRequest(); return false;">
+		<select id="species">
+			<option value="orca" default>Orca</option>
+			<option value="minke">Minke</option>
+			<option value="gray whale">Gray whale</option>
+			<option value="humpback">Humpback</option>
+			<option value="atlantic white-sided dolphin">Atlantic White-sided Dolphin</option>
+			<option value="pacific white-sided dolphin">Pacific White-sided Dolphin</option>
+			<option value="dalls porpoise">Dalls Porpoise</option> Harbor Porpoise</option>
+			<option value="harbor seal">Harbor Seal</option>
+			<option value="elephant seal">Elephant Seal</option>
+			<option value="southern elephant seal">Southern Elephant Seal</option>
+			<option value="california sea Lion">California Sea Lion</option>
+			<option value="steller sea lion">Steller Sea Lion</option>
+			<option value="sea otter">Sea Otter</option>
+			<option value="other">Other</option>
+			<option value="unkown">Unknown</option>
+		</select>
+		<input id="radius" type="number" min="0" step=".1" placeholder="Search Radius (mi)"/>
+		<input type="submit" value="Get Count"/>
+	</form>
+	<div id="countDisplay">
+		<h1>Count:</h1>
+		<div id="countContainer"></div>
 	</div>
-	This page is not currently functional
 </body>
 </html>
