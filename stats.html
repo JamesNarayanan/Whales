@@ -60,6 +60,31 @@
 			background-color: aqua;
 			font-family: 'Courier New', Courier, monospace;
 		}
+		#instructionsContainer {
+			width: 100vw;
+			height: 100vh;
+			top: 0;
+			position: fixed;
+			z-index: 10;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(0,0,0,.6);
+		}
+		#instructions {
+			width: 400px;
+			padding: 20px;
+			text-align: center;
+			background: white;
+		}
+		#instructions button {
+			width: 100%;
+			height: auto;
+			bottom: 0;
+			padding: 10px 15px;
+			background: rgba(0,0,0,.4);
+			border: 0;
+		}
 		#parameters,
 		#countDisplay {
 			margin: 0 auto;
@@ -160,6 +185,19 @@
 		<a href="./graphics.html">Graphics</a>
 	</nav>
 
+	<div id="instructionsContainer">
+		<div id="instructions">
+			<p>
+				This page gives a count of a species of
+				mammals in a specified. You can pick a radius to search in,
+				and choose a location with longitude an latitude or by dragging
+				the marker on the map. The search, press "Get Count" or simply move
+				the marker.
+			</p>
+			<button id="instructionsButton">DONE</button>
+		</div>
+	</div>
+
 	<form id="parameters" onsubmit="makeRequest(); return false;">
 		<label for="species" style="margin-top: 10px;">Species:</label>
 		<select id="species">
@@ -238,6 +276,10 @@
 				$("#orcaTypeContainer").css('display', 'none');
 			else
 				$("#orcaTypeContainer").css('display', 'flex');
+		});
+
+		$("#instructionsButton").click(function() {
+			$("#instructionsContainer").css('display', 'none');
 		});
 	</script>
 </body>
