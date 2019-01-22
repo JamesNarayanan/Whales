@@ -9,6 +9,16 @@
 	<script>
 		var loading;
 
+		function init() {
+			checkForInstructions();
+		}
+
+		function checkForInstructions() {
+			var instructions = getCookie("instructions");
+			if(instructions!="hidden")
+				$("#instructionsContainer").css('display', 'flex');
+		}
+
 		function requestListener() {
 			var data = JSON.parse(this.responseText);
 			console.log(data);
@@ -50,6 +60,22 @@
 			request.setRequestHeader("Content-type", "application/json");
 			request.send();
 		}
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for(var i = 0; i <ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
 	</script>
 	<style>
 		* {
@@ -66,7 +92,7 @@
 			top: 0;
 			position: fixed;
 			z-index: 10;
-			display: flex;
+			display: none;
 			justify-content: center;
 			align-items: center;
 			background: rgba(0,0,0,.6);
@@ -77,13 +103,28 @@
 			text-align: center;
 			background: white;
 		}
-		#instructions button {
+		#instructionsButton {
 			width: 100%;
 			height: auto;
 			bottom: 0;
+			margin-top: 10px;
+			border: 0;
 			padding: 10px 15px;
 			background: rgba(0,0,0,.4);
-			border: 0;
+			color: white;
+			cursor: pointer;
+			transition: .25s;
+		}
+		#instructionsButton:hover {
+			background: rgba(0,0,0,.6);
+		}
+		#showInstructions {
+			top: -5px;
+			right: 0;
+			position: fixed;
+			font-size: 3rem;
+			cursor: pointer;
+			user-select: none;
 		}
 		#parameters,
 		#countDisplay {
@@ -176,7 +217,7 @@
 		}
 	</style>
 </head>
-<body>
+<body onload="init()">
 	<nav>
 		<a href="./index.html" id="logo"><img src="./resources/whales.gif"/></a>
 		<a href="./sounds.html">Sounds</a>
@@ -188,15 +229,17 @@
 	<div id="instructionsContainer">
 		<div id="instructions">
 			<p>
-				This page gives a count of a species of
-				mammals in a specified. You can pick a radius to search in,
-				and choose a location with longitude an latitude or by dragging
-				the marker on the map. The search, press "Get Count" or simply move
+				This page gives a count of a species of aquatic
+				mammals in a specified area. You can pick a radius to search within
+				and choose a location either by inputting longitude an latitude or by dragging
+				the marker on the map. To search, press "Get Count" or simply move
 				the marker.
 			</p>
 			<button id="instructionsButton">DONE</button>
 		</div>
 	</div>
+
+	<div id="showInstructions">?</div>
 
 	<form id="parameters" onsubmit="makeRequest(); return false;">
 		<label for="species" style="margin-top: 10px;">Species:</label>
@@ -280,7 +323,12 @@
 
 		$("#instructionsButton").click(function() {
 			$("#instructionsContainer").css('display', 'none');
+			document.cookie = "instructions=hidden";
 		});
+
+		$("#showInstructions").click(function() {
+			$("#instructionsContainer").css('display', 'flex');
+		})
 	</script>
 </body>
 </html>
