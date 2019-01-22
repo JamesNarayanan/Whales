@@ -7,9 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="./navStyle.css">
 	<title>Whale Stats</title>
 	<script>
+		var loading;
+
 		function requestListener() {
 			var data = JSON.parse(this.responseText);
 			console.log(data);
+			clearInterval(loading);
 			$("#countContainer").html(data);
 		}
 		function requestError(error) {
@@ -17,6 +20,13 @@
 		}
 
 		function makeRequest() {
+			var count = 1;
+			loading = setInterval(function() {
+				if(count==4)
+					count = 1;
+				$("#countContainer").html("Loading" + ".".repeat(count++));
+			}, 250);
+
 			var species = $("#species").val();
 			species = species.replace(" ", "+");
 			
@@ -219,6 +229,7 @@
 			},
 			onchanged: function(currentLocation, radius, isMarkerDropped) {
 				console.log(currentLocation);
+				makeRequest();
 			}
 		});
 
